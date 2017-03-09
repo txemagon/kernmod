@@ -1,3 +1,10 @@
+# Modules weird staff
+.*
+*.cmd
+*.symvers
+*.order
+*.mod.c
+
 # Object files
 *.o
 *.ko
