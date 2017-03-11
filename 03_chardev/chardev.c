@@ -9,7 +9,7 @@ void cleanup_module(void);
 static int     device_open    (struct inode *, struct file*);
 static int     device_release (struct inode *, struct file*);
 static ssize_t device_read    (struct file *,  char *, size_t, loff_t *);
-static ssize_t device_write   (struct file *,  char *, size_t, loff_t *);
+static ssize_t device_write   (struct file *,  const char *, size_t, loff_t *);
 
 
 #define SUCCESS 0
@@ -25,7 +25,7 @@ static char *msg_Ptr;
 static struct file_operations fops = {
     .read  = device_read,
     .write = device_write,
-    .open  = Device_open,
+    .open  = device_open,
     .release = device_release
 };
 
@@ -48,9 +48,12 @@ int init_module(void) {
 }
 
 void cleanup_module(void) {
+    /*
     int ret = unregister_chrdev(Major, DEVICE_NAME);
     if (ret < 0)
         printk( KERN_ALERT "Error in unregister_chrdev: %d.\n", ret );
+     */
+    unregister_chrdev(Major, DEVICE_NAME);
 }
 
 /* METHODS */

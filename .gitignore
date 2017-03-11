@@ -4,6 +4,7 @@
 *.symvers
 *.order
 *.mod.c
+tags
 
 # Object files
 *.o
